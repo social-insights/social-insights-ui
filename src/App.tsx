@@ -1,24 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route, Link, Router } from "react-router-dom";
+import logo from "./logo.svg";
+import "./App.css";
+
+// import "bootstrap/dist/css/bootstrap.min.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import { AuthProvider, RequireAuth } from "./util/auth/AuthProvider";
+import Layout from "./components/Layout";
+import Dashboard from "./pages/dashboard/Dashboard";
+import Landing from "./pages/landing/Landing";
+import Login from "./pages/auth/Login";
+import Insights from "./pages/insights/Insights";
+import ABTest from "./pages/posts/ABTest";
+import SignUp from "./pages/auth/SignUp";
+import LinkAccounts from "./pages/link/LinkAccounts";
+import Posts from "./pages/posts/Posts";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AuthProvider>
+        <Routes>
+          <Route element={<RequireAuth />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/link" element={<LinkAccounts />} />
+            <Route path="/insights" element={<Insights />} />
+            <Route path="/posts" element={<Posts />} />
+            <Route path="posts/ab" element={<ABTest />} />
+          </Route>
+          <Route>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route index path="/" element={<Landing />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
     </div>
   );
 }
