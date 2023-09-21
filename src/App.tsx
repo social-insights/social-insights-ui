@@ -16,6 +16,7 @@ import ABTest from "./pages/posts/ABTest";
 import SignUp from "./pages/auth/SignUp";
 import LinkAccounts from "./pages/link/LinkAccounts";
 import Posts from "./pages/posts/Posts";
+import Reports from "./pages/reports/Reports";
 
 function App() {
   return (
@@ -27,7 +28,8 @@ function App() {
             <Route path="/link" element={<LinkAccounts />} />
             <Route path="/insights" element={<Insights />} />
             <Route path="/posts" element={<Posts />} />
-            <Route path="posts/ab" element={<ABTest />} />
+            <Route path="/posts/ab" element={<ABTest />} />
+            <Route path="/reports" element={<Reports />} />
           </Route>
           <Route>
             <Route path="/login" element={<Login />} />
