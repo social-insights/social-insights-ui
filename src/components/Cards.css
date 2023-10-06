@@ -1,0 +1,65 @@
+/* .holder {
+    position: relative;
+    width: 250px;
+} */
+
+.card {
+    position: absolute;
+    height: 30%;
+    width: 18%;
+    align-items: start;
+    justify-content: center;
+    transform-style: preserve-3d;
+    transition: all 0.2s ease;
+    margin-bottom: 25px;
+    border-radius: 18px;
+    cursor: pointer;
+}
+
+.card:hover{
+    margin-top: -10px;
+
+}
+
+.card.clicked {
+    transform: rotateY(180deg);
+}
+
+.front{
+    display: flex;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    backface-visibility: hidden;
+    background-color: #e4ecf1;
+    border-radius: 18px;
+    text-align: center;
+    align-items: center;
+    border-color: gray;
+}
+
+.front:hover {
+    background-color:#d8dde0;
+}
+
+.back{
+    display: flex;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    align-items: start;
+    justify-content: center;
+    backface-visibility: hidden;
+    background-color: #b7bfc4;
+    transform: rotateY(180deg);
+    border-radius: 18px;
+    text-align: center;
+    align-items: center;
+    padding: 10px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+.back:hover{
+    background-color: #aeb6bb;
+}
