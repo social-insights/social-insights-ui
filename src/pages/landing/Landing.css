@@ -1,0 +1,30 @@
+.slogan {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.boxes {
+    margin-top: 50px;
+    width: 60%;
+    height: 30%;
+}
+
+.row {
+    height: 100%;
+    align-items: start;
+    margin-bottom: 25px;
+    justify-content: center;
+}
+
+.start {
+    background-color: #16263C;
+    padding: 12px 28px;
+    border-radius: 8px;
+    outline: none;
+    color: white;
+    font-size: 16px;
+    transition: all 0.3s ease-out;
+}
+
+.start:hover {
+    background-color: #3B5999;
+}
