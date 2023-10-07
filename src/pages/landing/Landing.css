@@ -5,13 +5,12 @@
 .boxes {
     margin-top: 50px;
     width: 60%;
-    height: 30%;
 }
 
 .row {
     height: 100%;
     align-items: start;
-    margin-bottom: 25px;
+    margin-bottom: 50px;
     justify-content: center;
 }
 

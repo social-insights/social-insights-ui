@@ -18,7 +18,6 @@ import LinkAccounts from "./pages/link/LinkAccounts";
 import Posts from "./pages/posts/Posts";
 import Reports from "./pages/reports/Reports";
 import Organization from "./pages/organization/Organization";
-import AcceptInvite from "./pages/organization/AcceptInvite";
 import SelectOrg from "./pages/organization/SelectOrg";
 import JoinOrg from "./pages/organization/JoinOrg";
 
