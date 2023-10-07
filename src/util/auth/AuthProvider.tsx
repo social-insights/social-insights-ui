@@ -3,6 +3,11 @@ import { useLocation, Navigate, useNavigate, Outlet } from "react-router-dom";
 import { supabase } from "../../supabase/supabase";
 import { Session, User } from "@supabase/supabase-js";
 import Layout from "../../components/Layout";
+import {
+  getUserOrgs,
+  userInOrg,
+} from "../../supabase/api/accounts/accountCalls";
+import SelectOrg from "../../pages/organization/SelectOrg";
 
 const AuthImpl = {
   // TODO: implement Supabase auth functions
@@ -31,10 +36,21 @@ const AuthImpl = {
   },
 };
 
+interface Org {
+  org_id: number;
+  created_at: string;
+  post_ids: string[];
+  name: string;
+  user_ids: string[];
+}
+
 interface AuthContextType {
+  auth: any;
   user: any;
+  org: Org | undefined;
   signIn: (callback: VoidFunction) => void;
   signOut: (callback: VoidFunction) => void;
+  setOrg: any;
 }
 
 let AuthContext = createContext<AuthContextType>(null!);
@@ -43,12 +59,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [auth, setAuth] = useState(false);
   const [user, setUser] = useState<User>();
   const [loading, setLoading] = useState(true);
+  const [org, setOrg] = useState<Org>();
 
   useEffect(() => {
     setLoading(true);
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user);
       setAuth(session?.user ? true : false);
+      const localOrg = JSON.parse(localStorage.getItem("org")!);
+      userInOrg(localOrg.org_id, session?.user.id!).then((res) => {
+        if (res === true) {
+          setOrg(localOrg);
+        } else {
+          setOrg(undefined);
+        }
+      });
       setLoading(false);
     });
 
@@ -80,13 +105,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const passwordReset = () => {}; // TODO
   const updatePassword = () => {}; // TODO
 
+  useEffect(() => {
+    if (org?.name !== undefined) {
+      localStorage.setItem("org", JSON.stringify(org));
+    }
+  }, [org, user]);
+
   let res = {
     auth,
     user,
+    org,
     signIn,
     signOut,
     passwordReset,
     updatePassword,
+    setOrg,
   };
 
   return (
@@ -96,10 +129,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-// export function useAuth() {
-//   return React.useContext(AuthContext);
-// }
-
 export const useAuth = () => useContext(AuthContext);
 
 export function RequireAuth() {
@@ -107,25 +136,17 @@ export function RequireAuth() {
   let location = useLocation();
 
   return auth.user ? (
-    <Layout>
-      <Outlet />
-    </Layout>
+    auth.org?.org_id !== undefined ||
+    location.pathname.startsWith("/organization/join") ? (
+      <Layout>
+        <Outlet />
+      </Layout>
+    ) : (
+      <Layout>
+        <SelectOrg />
+      </Layout>
+    )
   ) : (
     <Navigate to={"/login"} replace state={{ path: location.pathname }} />
   );
-
-  // if (!auth.user) {
-  //   // Redirect them to the /login page, but save the current location they were
-  //   // trying to go to when they were redirected. This allows us to send them
-  //   // along to that page after they login, which is a nicer user experience
-  //   // than dropping them off on the home page.
-  //   return <Navigate to="/login" state={{ from: location }} replace />;
-  // }
-
-  // return children;
 }
-
-// export function HomepageRedirect(){
-//   const navigate = useNavigate();
-//   return navigate("/");
-// }

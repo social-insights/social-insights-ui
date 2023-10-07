@@ -17,6 +17,10 @@ import SignUp from "./pages/auth/SignUp";
 import LinkAccounts from "./pages/link/LinkAccounts";
 import Posts from "./pages/posts/Posts";
 import Reports from "./pages/reports/Reports";
+import Organization from "./pages/organization/Organization";
+import AcceptInvite from "./pages/organization/AcceptInvite";
+import SelectOrg from "./pages/organization/SelectOrg";
+import JoinOrg from "./pages/organization/JoinOrg";
 
 function App() {
   return (
@@ -30,6 +34,13 @@ function App() {
             <Route path="/posts" element={<Posts />} />
             <Route path="/posts/ab" element={<ABTest />} />
             <Route path="/reports" element={<Reports />} />
+            <Route path="/organization" element={<Organization />} />
+            <Route path="/organization/select" element={<SelectOrg />} />
+            <Route path="/organization/join" element={<JoinOrg />} />
+            {/* <Route
+              path="/organization/invite/:invitationId"
+              element={<AcceptInvite />}
+            /> */}
           </Route>
           <Route>
             <Route path="/login" element={<Login />} />

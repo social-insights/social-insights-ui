@@ -52,12 +52,16 @@ export default function Header() {
             </NavItem>
           </Nav>
           <Nav navbar className="ms-auto">
-            <Dropdown inNavbar isOpen={dropdownOpen} toggle={toggleDD} end>
+            <Dropdown inNavbar isOpen={dropdownOpen} toggle={toggleDD}>
               <DropdownToggle nav caret>
                 <BiUserCircle size={"2em"} />
               </DropdownToggle>
-              <DropdownMenu end right>
+              <DropdownMenu end>
                 <DropdownItem>Profile</DropdownItem>
+                <DropdownItem href="/organization">Organization</DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem href="/organization/select">Change Organization</DropdownItem>
+                <DropdownItem href="/organization/join">Join Organization</DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem onClick={() => auth.signOut(() => {})}>
                   Log Out
