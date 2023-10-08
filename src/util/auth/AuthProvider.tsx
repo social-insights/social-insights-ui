@@ -67,13 +67,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUser(session?.user);
       setAuth(session?.user ? true : false);
       const localOrg = JSON.parse(localStorage.getItem("org")!);
-      userInOrg(localOrg.org_id, session?.user.id!).then((res) => {
-        if (res === true) {
-          setOrg(localOrg);
-        } else {
-          setOrg(undefined);
-        }
-      });
+      if (localOrg !== null) {
+        userInOrg(localOrg.org_id, session?.user.id!).then((res) => {
+          if (res === true) {
+            setOrg(localOrg);
+          } else {
+            setOrg(undefined);
+          }
+        });
+      } else {
+        setOrg(undefined);
+      }
       setLoading(false);
     });
 
@@ -136,7 +140,7 @@ export function RequireAuth() {
   let location = useLocation();
 
   return auth.user ? (
-    auth.org?.org_id !== undefined ||
+    (auth.org !== null && auth.org?.org_id !== undefined) ||
     location.pathname.startsWith("/organization/join") ? (
       <Layout>
         <Outlet />
