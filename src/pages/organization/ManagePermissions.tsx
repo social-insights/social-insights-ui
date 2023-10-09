@@ -1,6 +1,7 @@
 import { Col, Container, ListGroup, ListGroupItem, Row } from "reactstrap";
 
 //TODO: Populate lists with Supabase data instead of dummy data
+// Add way to edit which roles / users have which permissions
 
 export default function ManagePerms() {
     return (
