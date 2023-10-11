@@ -1,5 +1,10 @@
 import React from "react";
 import { Col, Container, Row } from "reactstrap";
+import InstagramLogo from "../../images/instagram-logo.webp";
+import FacebookLogo from "../../images/facebook.webp";
+
+import "./Dashboard.css";
+
 
 export default function Dashboard() {
   return (
@@ -10,7 +15,37 @@ export default function Dashboard() {
           className="h-100 d-flex flex-column gap-4 justify-content-start"
         >
           <Container className="h-25 foreground raised round-1">
-            followers per account
+            <p className="mt-1 ml-1">Social Media Followers</p>
+            <Row className="h-10">
+            <Container className='logos d-flex mt-2'>
+              {/* <Col className='insta'> */}
+                <img
+                  alt='instagram'
+                  src={InstagramLogo}
+                  style={{
+                    height: '20%',
+                    width: '20%',
+                    margin: '2% 0 0 0',
+                  }}
+                />
+    
+              {/* </Col> */}
+              {/* <Col className='insta'> */}
+                <img
+                  alt='instagram'
+                  src={FacebookLogo}
+                  style={{
+                    height: '20%',
+                    width: '20%',
+                    margin: '2% 0 0 0',
+                  }}
+                />
+                
+              {/* </Col> */}
+            </Container>
+         
+            </Row>
+          
           </Container>
           <Container className="h-25 foreground raised round-1">
             weekly change in followers/likes
