@@ -1,7 +1,7 @@
 import React from "react";
 import { useAuth } from "../../util/auth/AuthProvider";
 import { useNavigate } from "react-router-dom";
-import "./Login.css"; // Import your CSS file
+import "./Login.css";
 
 export default function Login() {
   let auth = useAuth();
