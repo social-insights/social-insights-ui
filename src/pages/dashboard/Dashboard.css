@@ -1,5 +1,5 @@
 .logos {
-    gap: 5em;
-    align-items: center;
+    gap: 12em;
+    align-items: space-around;
     justify-content: center;
 }

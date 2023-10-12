@@ -19,9 +19,6 @@ export default function Landing() {
   const [isOpen, setIsOpen] = useState(false);
   let navigate = useNavigate();
 
-    const headingStyle = {
-      marginTop: '50px',
-    }
 
   return (
     <div>
@@ -44,13 +41,7 @@ export default function Landing() {
               </p>
               </Container>
             <Container className='mt-3 d-flex justify-content-center align-items-center align-content-space-between'>
-              {/* <button
-                onClick={() =>
-                  {navigate("/login");}
-                }
-              >
-                Log In
-              </button> */}
+      
               <button className='start'
                 onClick={() =>
                   {navigate("/signup");}
@@ -62,9 +53,7 @@ export default function Landing() {
             
             <Container className='boxes'>
                <Row className='row' style={{gap: '50px'}}> 
-                  {/* <Col className="h-100 d-flex justify-content-center align-items-center foreground raised round-1">
-                    <h1 style={{ fontSize: '22px' }}> Performance Tracking </h1>
-                  </Col> */}
+                
                   <Col className="p-0 h-100 d-flex justify-content-center align-items-center">
                     <Card cardInfo={{
                       title: 'Performance Tracking',
@@ -86,23 +75,10 @@ export default function Landing() {
                     }}
                     />
                   </Col>
-                  {/* <Col className="h-100 d-flex justify-content-center align-items-center foreground raised round-1">
-                    <h1 style={{ fontSize: '22px' }}> Post Insights </h1>
-                  </Col>
-                  <Col className="h-100 d-flex justify-content-center align-items-center foreground raised round-1">
-                    <h1 style={{ fontSize: '22px' }}> Predictive Modeling </h1>
-                  </Col> */}
+                
               </Row>
               <Row className='row mt-5' style={{gap: '50px'}}> 
-                  {/* <Col className="h-100 d-flex justify-content-center align-items-center foreground raised round-1">
-                    <h1 style={{ fontSize: '22px' }}> A/B Testing </h1>
-                  </Col>
-                  <Col className="h-100 d-flex justify-content-center align-items-center foreground raised round-1">
-                    <h1 style={{ fontSize: '22px' }}> Sentiment Analysis </h1>
-                  </Col>
-                  <Col className="h-100 d-flex justify-content-center align-items-center foreground raised round-1">
-                    <h1 style={{ fontSize: '22px' }}> Reports </h1>
-                  </Col> */}
+            
                   <Col className="p-0 h-100 d-flex justify-content-center align-items-center">
                     <Card cardInfo={{
                       title: 'A/B Testing',

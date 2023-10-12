@@ -5,6 +5,8 @@ import FacebookLogo from "../../images/facebook.webp";
 
 import "./Dashboard.css";
 
+// TODO: Link actual follower amounts, change fonts
+
 
 export default function Dashboard() {
   return (
@@ -15,37 +17,36 @@ export default function Dashboard() {
           className="h-100 d-flex flex-column gap-4 justify-content-start"
         >
           <Container className="h-25 foreground raised round-1">
-            <p className="mt-1 ml-1">Social Media Followers</p>
+            <p className="mb-1" style={{}}>Social Media Followers</p>
             <Row className="h-10">
-            <Container className='logos d-flex mt-2'>
-              {/* <Col className='insta'> */}
+              <Col md={6} className="d-flex flex-column align-items-center">
                 <img
-                  alt='instagram'
+                  alt="instagram"
                   src={InstagramLogo}
                   style={{
-                    height: '20%',
-                    width: '20%',
+                    height: '25%',
+                    width: '25%',
                     margin: '2% 0 0 0',
                   }}
                 />
-    
-              {/* </Col> */}
-              {/* <Col className='insta'> */}
+                <h2 className="mt-2">1,234,567</h2> 
+                <p style={{fontSize: '11px'}}>Followers</p>
+
+              </Col>
+              <Col md={6} className="d-flex flex-column align-items-center">
                 <img
-                  alt='instagram'
+                  alt="facebook"
                   src={FacebookLogo}
                   style={{
-                    height: '20%',
-                    width: '20%',
+                    height: '25%',
+                    width: '25%',
                     margin: '2% 0 0 0',
                   }}
                 />
-                
-              {/* </Col> */}
-            </Container>
-         
+                <h2 className="mt-2">674,438</h2> 
+                <p style={{fontSize: '11px'}}>Followers</p>
+              </Col>
             </Row>
-          
           </Container>
           <Container className="h-25 foreground raised round-1">
             weekly change in followers/likes
