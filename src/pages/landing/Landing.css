@@ -15,7 +15,7 @@
 }
 
 .landing .start {
-    background-color: #16263C;
+    background-color: #2684f2;
     padding: 12px 28px;
     border-radius: 8px;
     outline: none;
@@ -25,5 +25,5 @@
 }
 
 .landing .start:hover {
-    background-color: #3B5999;
+    background-color: #3897f0;
 }

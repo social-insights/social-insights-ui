@@ -21,6 +21,7 @@
     "reactstrap": "^9.2.0",
     "resend": "^1.1.0",
     "sass": "^1.67.0",
+    "scripts": "^0.1.0",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
