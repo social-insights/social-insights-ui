@@ -20,11 +20,11 @@ export default function Card(props: CardProps) {
     // const flip = isFlipped ? {transform: 'rotate(45deg)' } : {};
     return (
         // <div className='holder'>
-            <div className={`card ${isFlipped ? 'clicked': ''}`} onClick={handleClick}>
-                <div className="front raised">
+            <div className={`flippable-card ${isFlipped ? 'flippable-card-clicked': ''}`} onClick={handleClick}>
+                <div className="flippable-card-front raised">
                     <h1 style={{ fontSize: '22px' }}>{cardInfo.title}</h1>
                 </div>
-                <div className='back raised'>
+                <div className='flippable-card-back raised'>
                     <h1 style={{ fontSize: '16px' }}>{cardInfo.info}</h1>
                 </div>
             </div>

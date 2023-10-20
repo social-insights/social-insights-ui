@@ -34,6 +34,7 @@ function App() {
             <Route path="/posts/ab" element={<ABTest />} />
             <Route path="/reports" element={<Reports />} />
             <Route path="/organization" element={<Organization />} />
+            <Route path="/organization?code=:authCode" element={<Organization />} />
             <Route path="/organization/select" element={<SelectOrg />} />
             <Route path="/organization/join" element={<JoinOrg />} />
             {/* <Route
