@@ -1,20 +1,20 @@
-.slogan {
+.landing .slogan {
     font-family: 'Quicksand', sans-serif;
 }
 
-.boxes {
+.landing .boxes {
     margin-top: 50px;
     width: 60%;
 }
 
-.row {
+.landing .row {
     height: 100%;
     align-items: start;
     margin-bottom: 50px;
     justify-content: center;
 }
 
-.start {
+.landing .start {
     background-color: #2684f2;
     padding: 12px 28px;
     border-radius: 8px;
@@ -24,6 +24,6 @@
     transition: all 0.3s ease-out;
 }
 
-.start:hover {
+.landing .start:hover {
     background-color: #3897f0;
 }
