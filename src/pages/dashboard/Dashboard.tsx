@@ -2,6 +2,11 @@ import React from "react";
 import { Col, Container, Row } from "reactstrap";
 import InstagramLogo from "../../images/instagram-logo.webp";
 import FacebookLogo from "../../images/facebook.webp";
+import {
+  BiLogoFacebookSquare,
+  BiLogoInstagram,
+  BiLogoTwitter,
+} from "react-icons/bi";
 
 import "./Dashboard.css";
 
@@ -14,36 +19,26 @@ export default function Dashboard() {
       <Row className="h-100">
         <Col
           md={4}
-          className="h-100 d-flex flex-column gap-4 justify-content-start"
+          className="h-100 d-flex flex-column gap-4 "
         >
-          <Container className="h-25 foreground raised round-1">
+          <Container className="h-25 foreground raised round-1 justify-content-between">
             <p className="mb-1" style={{}}>Social Media Followers</p>
-            <Row className="h-10">
-              <Col md={6} className="d-flex flex-column align-items-center">
-                <img
-                  alt="instagram"
-                  src={InstagramLogo}
-                  style={{
-                    height: '25%',
-                    width: '25%',
-                    margin: '2% 0 0 0',
-                  }}
-                />
-                <h2 className="mt-2">1,234,567</h2> 
+            <Row className="h-10 mt-4">
+              <Col md={4} className="d-flex flex-column align-items-center">
+                <BiLogoInstagram size={60} className="instagram" />
+
+                <h4 className="mt-2">1,234,567</h4> 
                 <p style={{fontSize: '11px'}}>Followers</p>
 
               </Col>
-              <Col md={6} className="d-flex flex-column align-items-center">
-                <img
-                  alt="facebook"
-                  src={FacebookLogo}
-                  style={{
-                    height: '25%',
-                    width: '25%',
-                    margin: '2% 0 0 0',
-                  }}
-                />
-                <h2 className="mt-2">674,438</h2> 
+              <Col md={4} className="d-flex flex-column align-items-center">
+                <BiLogoFacebookSquare size={60} className="facebook" />
+                <h4 className="mt-2">674,438</h4> 
+                <p style={{fontSize: '11px'}}>Followers</p>
+              </Col>
+              <Col md={4} className="d-flex flex-column align-items-center">
+                <BiLogoTwitter size={60} className="twitter" />
+                <h4 className="mt-2">50,237</h4> 
                 <p style={{fontSize: '11px'}}>Followers</p>
               </Col>
             </Row>

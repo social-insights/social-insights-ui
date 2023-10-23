@@ -54,18 +54,11 @@ export default function Insights() {
                 onChange={handleImageChange}
               />
             </div>
-
+            <button style={{width: '100%', marginTop:'4%'}}type='button'>
+                Enter
+            </button>
             
-            {/* <div>
-              <h3>Selected Image:</h3>
-              {image && (
-                <img
-                  src={URL.createObjectURL(image)}
-                  alt="Selected Image"
-                  style={{ maxWidth: '300px' }}
-                />
-              )}
-            </div> */}
+            
           </Container>
         </Container>
       </Container>
