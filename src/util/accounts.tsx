@@ -143,18 +143,23 @@ export function updateInstagramAccount(account: Profile) {
 }
 
 export function insertInstagramAccount(account: Profile) {
-  supabase.from("Accounts").insert({
-    account_id: account.id,
-    org_id: account.org_id,
-    username: account.username,
-    bio: account.bio,
-    full_name: account.full_name,
-    followers: account.followers,
-    following: account.following,
-    profile_pic_url: account.profile_pic_url,
-    is_private: account.is_private,
-    last_updated: new Date().toISOString(),
-  });
+  supabase
+    .from("Accounts")
+    .insert({
+      account_id: account.id,
+      org_id: account.org_id,
+      username: account.username,
+      bio: account.bio,
+      full_name: account.full_name,
+      followers: account.followers,
+      following: account.following,
+      profile_pic_url: account.profile_pic_url,
+      is_private: account.is_private,
+      last_updated: new Date().toISOString(),
+    })
+    .then((data) => {
+      console.log(data);
+    });
 }
 
 interface InstagramUserContextType {

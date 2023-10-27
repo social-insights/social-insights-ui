@@ -97,21 +97,21 @@ export default function Dashboard() {
         <Col md={4} className="h-100 d-flex flex-column gap-4 ">
           <Container className="h-25 foreground raised round-1 justify-content-between">
             {/* <p style={{fontSize: '20px'}}>Social Media Followers</p> */}
-            <Row className="h-10">
-              <Col md={4} className="d-flex flex-column align-items-center">
+            <Row className="h-100">
+              <Col md={4} className="d-flex flex-column align-items-center justify-content-center">
                 <BiLogoInstagram size={60} className="instagram" />
 
                 <aside>@{user?.username}</aside>
                 <h4>{user?.followers && nFormatter(user?.followers!, 2)}</h4>
                 <p style={{ fontSize: "11px" }}>Followers</p>
               </Col>
-              <Col md={4} className="d-flex flex-column align-items-center">
+              <Col md={4} className="d-flex flex-column align-items-center justify-content-center">
                 <BiLogoFacebookSquare size={60} className="facebook" />
                 <aside>@nba</aside>
                 <h4>39M</h4>
                 <p style={{ fontSize: "11px" }}>Likes</p>
               </Col>
-              <Col md={4} className="d-flex flex-column align-items-center">
+              <Col md={4} className="d-flex flex-column align-items-center justify-content-center">
                 <BiLogoTwitter size={60} className="twitter" />
                 <aside>@nba</aside>
                 <h4 className="">44.6M</h4>
