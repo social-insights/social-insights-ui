@@ -20,6 +20,7 @@ import Reports from "./pages/reports/Reports";
 import Organization from "./pages/organization/Organization";
 import SelectOrg from "./pages/organization/SelectOrg";
 import JoinOrg from "./pages/organization/JoinOrg";
+import Profile from "./pages/profile/Profile";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/posts" element={<Posts />} />
             <Route path="/posts/ab" element={<ABTest />} />
             <Route path="/reports" element={<Reports />} />
+            <Route path="/profile" element={<Profile />}/>
             <Route path="/organization" element={<Organization />} />
             <Route path="/organization?code=:authCode" element={<Organization />} />
             <Route path="/organization/select" element={<SelectOrg />} />

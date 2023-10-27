@@ -57,7 +57,7 @@ export default function Header() {
                 <BiUserCircle size={"2em"} />
               </DropdownToggle>
               <DropdownMenu end>
-                <DropdownItem>Profile</DropdownItem>
+                <DropdownItem href="/profile">Profile</DropdownItem>
                 <DropdownItem href="/organization">Organization</DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem href="/organization/select">Change Organization</DropdownItem>

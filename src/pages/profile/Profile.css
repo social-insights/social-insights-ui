@@ -1,0 +1,35 @@
+/* Profile.css */
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  .profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto;
+    background-color: #ccc;
+    background-image: /* profile image from database/ social media account */;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .user-info {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  h1 {
+    font-size: 24px;
+  }
+  
+  p {
+    font-size: 16px;
+  }
+  
