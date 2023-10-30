@@ -106,18 +106,14 @@ export default function Dashboard() {
             
             <Row className="h-100">
               <Col className="d-flex flex-column p-4 align-items-center">
-                
                 <Trendline 
                   dates={parseInt(engageDates)} 
                   header={'User Engagement'}
-                  
                 />
               </Col>
               <Col className="d-flex flex-column p-4 align-items-center">
-                
                 <Trendline dates={parseInt(engageDates)} header={'Impressions'}/>
               </Col>
-              
             </Row>
 
            
