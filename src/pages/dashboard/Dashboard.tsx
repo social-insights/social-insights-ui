@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "reactstrap";
 import Trendline from "../../components/Trends";
+import { Link } from "react-router-dom";
+
+import Chart from "../../components/Chart";
 
 import {
   BiLogoFacebookSquare,
@@ -89,7 +92,22 @@ export default function Dashboard() {
     setLikesDates(newValue);
   };
 
+  // Current Date info
   const dateOptions = ["7", "14", "30", "90"];
+
+  const getCurrentDate = (selectedDays: number) => {
+    const endDate = new Date();       // todays date
+    const startDate = new Date();
+    startDate.setDate(endDate.getDate() - selectedDays + 1);    // use user selection to calc range
+    return {
+      startDate: startDate.toISOString().split("T")[0],
+      endDate: endDate.toISOString().split("T")[0],
+    };
+  };
+
+  // Get live date ranges based on the selected days
+  const engageDateRange = getCurrentDate(parseInt(engageDates));
+  const likesDateRange = getCurrentDate(parseInt(likesDates));
 
   return (
     <Container className="vh-100 p-4" fluid>
@@ -101,8 +119,8 @@ export default function Dashboard() {
               <Col md={4} className="d-flex flex-column align-items-center justify-content-center">
                 <BiLogoInstagram size={60} className="instagram" />
 
-                <aside>@{user?.username}</aside>
-                <h4>{user?.followers && nFormatter(user?.followers!, 2)}</h4>
+                {/* <aside>@{user?.username}</aside>
+                <h4>{user?.followers && nFormatter(user?.followers!, 2)}</h4> */}
                 <p style={{ fontSize: "11px" }}>Followers</p>
               </Col>
               <Col md={4} className="d-flex flex-column align-items-center justify-content-center">
@@ -137,8 +155,8 @@ export default function Dashboard() {
             <Row className="h-20 d-flex justify-content-between">
               <Col className="d-flex flex-column align-items-left justify-content-center">
                 {/* Update to change based on selected date range */}
-                <p style={{ fontSize: "12px" }}>
-                  October 19, 2023 - October 26, 2023
+                <p style={{ fontSize: "14px" }}>
+                {engageDateRange.startDate} - {engageDateRange.endDate}
                 </p>
               </Col>
               <Col md={4} className="d-flex flex-column align-items-center">
@@ -152,15 +170,17 @@ export default function Dashboard() {
                 </select>
               </Col>
             </Row>
-
-            <Row className="h-100">
-              <Col className="d-flex flex-column p-4 align-items-center">
+            <Container className="d-flex mt-0 align-items-center justify-content-center">
+              <p>LINK ACCOUNT CHOICE FROM HEADER</p>
+            </Container>
+            <Row className="h-10">
+              <Col className="d-flex flex-column mx-4 align-items-center">
                 <Trendline
                   dates={parseInt(engageDates)}
                   header={"User Engagement"}
                 />
               </Col>
-              <Col className="d-flex flex-column p-4 align-items-center">
+              <Col className="d-flex flex-column mx-4 align-items-center">
                 <Trendline
                   dates={parseInt(engageDates)}
                   header={"Impressions"}
@@ -173,8 +193,8 @@ export default function Dashboard() {
             <Row className="h-20 d-flex justify-content-between">
               <Col className="d-flex flex-column align-items-left justify-content-center">
                 {/* Update to change based on selected date range */}
-                <p style={{ fontSize: "12px" }}>
-                  October 19, 2023 - October 26, 2023
+                <p style={{ fontSize: "14px" }}>
+                  {likesDateRange.startDate} - {likesDateRange.endDate}
                 </p>
               </Col>
               <Col md={4} className="d-flex flex-column align-items-center">
@@ -188,16 +208,18 @@ export default function Dashboard() {
                 </select>
               </Col>
             </Row>
-
-            <Row className="h-100">
-              <Col className="d-flex flex-column p-4 align-items-center">
+            <Container className="d-flex mt-0 align-items-center justify-content-center">
+              <p>LINK ACCOUNT CHOICE FROM HEADER</p>
+            </Container>
+            <Row className="h-10">
+              <Col className="d-flex flex-column mx-4 align-items-center">
                 {/* </Row> */}
                 <Trendline
                   dates={parseInt(likesDates)}
                   header={"Recent Page Likes"}
                 />
               </Col>
-              <Col className="d-flex flex-column p-4 align-items-center">
+              <Col className="d-flex flex-column mx-4 align-items-center">
                 <Trendline
                   dates={parseInt(likesDates)}
                   header={"Total Page Likes"}
