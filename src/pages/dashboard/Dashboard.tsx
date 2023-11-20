@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "reactstrap";
 import Trendline from "../../components/Trends";
 import { Link } from "react-router-dom";
+import { ResponsiveContainer } from "recharts";
 
 import Chart from "../../components/Chart";
 
@@ -9,8 +10,8 @@ import {
   BiLogoFacebookSquare,
   BiLogoInstagram,
   BiLogoTwitter,
-  BiTrendingUp,
-  BiTrendingDown,
+  BiSolidUpArrow ,
+  BiSolidDownArrow ,
 } from "react-icons/bi";
 
 //@ts-ignore
@@ -115,12 +116,12 @@ export default function Dashboard() {
         <Col md={4} className="h-100 d-flex flex-column gap-4 ">
           <Container className="h-25 foreground raised round-1 justify-content-between">
             {/* <p style={{fontSize: '20px'}}>Social Media Followers</p> */}
-            <Row className="h-100">
+            <Row className="h-100 mt-1">
               <Col md={4} className="d-flex flex-column align-items-center justify-content-center">
                 <BiLogoInstagram size={60} className="instagram" />
 
-                {/* <aside>@{user?.username}</aside>
-                <h4>{user?.followers && nFormatter(user?.followers!, 2)}</h4> */}
+                <aside>@{user?.username}</aside>
+                <h4>{user?.followers && nFormatter(user?.followers!, 2)}</h4>
                 <p style={{ fontSize: "11px" }}>Followers</p>
               </Col>
               <Col md={4} className="d-flex flex-column align-items-center justify-content-center">
@@ -137,11 +138,18 @@ export default function Dashboard() {
               </Col>
             </Row>
           </Container>
-          <Container className="h-25 foreground raised round-1">
-            weekly change in followers/likes
-          </Container>
           <Container className="h-50 foreground raised round-1">
-            key metrics last n days (clicks, likes, shares, etc.)
+            <p >Follower Change per Week</p>
+            <Container className="d-flex mt-1 flex-column align-items-center align-text-bottom">
+              <p className="">ACCOUNT PLACEHOLDER</p>
+            </Container>
+
+            <Container className="h-75 d-flex align-items-center justify-content-center">
+              <Chart layout={'horizontal'}/>
+            </Container>
+          </Container>
+          <Container className="h-25 foreground raised round-1">
+            [ACCOUNT] Mentions
           </Container>
         </Col>
         <Col
@@ -171,7 +179,7 @@ export default function Dashboard() {
               </Col>
             </Row>
             <Container className="d-flex mt-0 align-items-center justify-content-center">
-              <p>LINK ACCOUNT CHOICE FROM HEADER</p>
+              <p className="mt-auto">ACCOUNT PLACEHOLDER</p>
             </Container>
             <Row className="h-10">
               <Col className="d-flex flex-column mx-4 align-items-center">
@@ -208,8 +216,8 @@ export default function Dashboard() {
                 </select>
               </Col>
             </Row>
-            <Container className="d-flex mt-0 align-items-center justify-content-center">
-              <p>LINK ACCOUNT CHOICE FROM HEADER</p>
+            <Container className="d-flex align-items-center justify-content-center">
+              <p>ACCOUNT PLACEHOLDER</p>
             </Container>
             <Row className="h-10">
               <Col className="d-flex flex-column mx-4 align-items-center">
@@ -219,6 +227,7 @@ export default function Dashboard() {
                   header={"Recent Page Likes"}
                 />
               </Col>
+              
               <Col className="d-flex flex-column mx-4 align-items-center">
                 <Trendline
                   dates={parseInt(likesDates)}
@@ -233,10 +242,69 @@ export default function Dashboard() {
           className="h-100 d-flex flex-column gap-4 justify-content-start"
         >
           <Container className="h-50 foreground raised round-1">
-            mentions
+            <p className="mb-0">Account Metrics</p>
+
+            <Row className="d-flex flex-column mt-3 align-items-center justify-content-between">
+              <Col className="d-flex flex-column align-items-center mb-3">
+                <p className="mb-0">Twitter likes last 10 posts</p>
+                <Container className="hstack gap-3 justify-content-center">
+                  <Col className="d-flex flex-column align-items-end">
+                    <h2 className="mb-0">78</h2>
+                    <p style={{ color: 'grey', fontSize: '9px'  }} className="mb-0">Likes</p>
+
+                  </Col>
+                  <div className="vr"></div>
+                  <Col className="d-flex flex-column align-items-start">
+                    {/* <Row className="d-flex flex-column align-items-center"> */}
+                      <BiSolidUpArrow size={25} color="green"/>
+
+                    {/* </Row> */}
+                    <p style={{ color: 'grey', fontSize: '9px' }} className="mb-0">Last: (47)</p>
+                  </Col>
+                </Container>
+              </Col>
+              
+              <Col className="d-flex flex-column align-items-center mb-3">
+                <p className="mb-0">Twitter reposts last 10 posts</p>
+                <Container className="hstack gap-3 justify-content-center">
+                  <Col className="d-flex flex-column align-items-end">
+                    <h2 className="mb-0">13</h2>
+                    <p style={{ color: 'grey', fontSize: '9px' }} className="mb-0">Reposts</p>
+
+                  </Col>
+                  <div className="vr"></div>
+                  <Col className="d-flex flex-column align-items-start">
+                    <BiSolidUpArrow size={25} color="green"/>
+                    <p style={{ color: 'grey', fontSize: '9px' }} className="mb-0">Last: (6)</p>
+
+                  </Col>
+                </Container>
+              </Col>
+
+              <Col className="d-flex flex-column align-items-center ">
+                <p className="mb-0">Twitter comments last 10 posts</p>
+                <Container className="hstack gap-3 justify-content-center">
+                  <Col className="d-flex flex-column align-items-end">
+                    <h2 className="mb-0">7</h2>
+                    <p style={{ color: 'grey', fontSize: '9px' }} className="mb-0">Comments</p>
+
+                  </Col>
+                  <div className="vr"></div>
+                  
+                  <Col className="d-flex flex-column align-items-start">
+                    <BiSolidDownArrow size={25} color="red"/>
+                    <p style={{ color: 'grey', fontSize: '9px' }} className="mb-0">Last: (11)</p>
+
+                  </Col>
+                </Container>
+              </Col>
+            </Row>
           </Container>
           <Container className="h-25 foreground raised round-1">
-            viewer demographics
+            Follower Demographics
+            {/* <Container> */}
+              <Chart layout={'vertical'}/>
+            {/* </Container> */}
           </Container>
           <Container className="h-25 foreground raised round-1">
             other

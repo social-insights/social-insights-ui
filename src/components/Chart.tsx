@@ -1,31 +1,94 @@
 import React, { useState, useEffect } from "react";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 
-export default function Chart() {
-    const data = [
-        { name: 'Category 1', A: 400, B: 300, C: 200 },
-        { name: 'Category 2', A: 500, B: 200, C: 100 },
-        { name: 'Category 3', A: 300, B: 400, C: 300 },
-        { name: 'Category 4', A: 200, B: 300, C: 400 },
-      ];
+interface chartProps {
+  layout: string,
+}
+
+export default function Chart({layout} : chartProps) {
+  const data = layout === 'horizontal' ? [
+    { x: 'Sept 10', Gained: 543, Lost: 231 },
+    { x: 'Sept 17', Gained: 231, Lost: 111 },
+    { x: 'Sept 24', Gained: 342, Lost: 99 },
+    { x: 'Oct 1', Gained: 123, Lost: 221 },
+    { x: 'Oct 8', Gained: 465, Lost: 65 },
+    { x: 'Oct 15', Gained: 400, Lost: 232 },
+    { x: 'Oct 22', Gained: 550, Lost: 200 },
+    { x: 'Oct 29', Gained: 300, Lost: 400 },
+    { x: 'Nov 5', Gained: 200, Lost: 300 },
+  ] : [
+    { x: '10-14', Amount: 45},
+    { x: '15-18', Amount: 94},
+    { x: '19-24', Amount: 112},
+    { x: '25-29', Amount: 64},
+    { x: '30-40', Amount: 32},
+    { x: '40-55', Amount: 21},
+    { x: '55+', Amount: 11},
+
+  ];
+
+  const bars = Object.keys(data[0]) // Extract keys from the first object in the array
+    .filter(key => key !== 'name') // Exclude the 'name' key
+    .map((key, index) => (
+      <Bar key={index} dataKey={key} stackId="a" fill={`#${index}F5999`} />
+    ));
     
       return (
-        <ResponsiveContainer width="100%" height={300}>
+        <ResponsiveContainer className="d-flex h-100 align-items-center justify-content-center " 
+          width="100%" 
+          // height={200}
+        >
           <BarChart
             data={data}
-            margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+            margin={{ top: 25, right: 30, left: 10, bottom: 25 }}
+            title="Follower Change per Week"
           >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
+            <XAxis dataKey="x" />
+            
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="A" stackId="a" fill="#8884d8" />
-            <Bar dataKey="B" stackId="a" fill="#82ca9d" />
-            <Bar dataKey="C" stackId="a" fill="#ffc658" />
+            <Bar dataKey="Gained" stackId="a" fill="#3B5999" />
+            <Bar dataKey="Lost" stackId="a" fill="#00ACED" />
+            <Bar dataKey="Amount" stackId="a" fill="#00ACED" />
           </BarChart>
         </ResponsiveContainer>
 
   );
 }
+
+
+//     <ResponsiveContainer className="d-flex h-100 align-items-center justify-content-center " width="100%">
+//       {layout === 'horizontal' ? (
+//         <BarChart
+//           data={followerData}
+//           layout={'horizontal'}
+//           margin={{ top: 25, right: 30, left: 10 }}
+//         >
+//           <XAxis type="number" />
+//           <YAxis dataKey="name" type="category" />
+//           <Tooltip />
+//           <Legend />
+//           <Bar dataKey="Gained" stackId="a" fill="#3B5999" />
+//           <Bar dataKey="Lost" stackId="a" fill="#00ACED" />
+//         </BarChart>
+
+//       ) : (
+//         // horizontal chart
+//         <BarChart
+//           data={demoData}
+//           layout={'vertical'}
+//           margin={{ top: 25, right: 30, left: 10 }}
+//         >
+//           <XAxis dataKey="name" type="category" />
+//           <YAxis type="number" />
+//           <Tooltip />
+//           <Legend />
+//           <Bar dataKey="Gained" stackId="a" fill="#3B5999" />
+
+//         </BarChart>
+//       )}
+//     </ResponsiveContainer>
+//   );
+// }
