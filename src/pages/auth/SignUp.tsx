@@ -1,15 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuth } from "../../util/auth/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import "./SignUp.css";
 
+// TODO: Add option for phone number, add error messages, 
+      // skip verification for now?
 export default function SignUp() {
   let auth = useAuth();
   let navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  // const [phone, setPhone] = useState("");
+  const [password, setPass] = useState("");
 
+  const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  }
+  // const handlePhone = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setPhone(event.target.value);
+  // }
+  const handlePass = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPass(event.target.value);
+  }
   const handleSignUp = () => {
-    auth.signIn(() => {
-      navigate("/dashboard", { replace: true });
+    auth.signUp(email, password, () => {
+      navigate("/login", { replace: true });
     });
   };
 
@@ -28,15 +42,31 @@ export default function SignUp() {
           </label>
           <label> 
             Email:
-            <input type="text" placeholder="Example@example.com"></input>
+            <input type="text"
+            placeholder="Example@example.com"
+            value={email}
+            onChange={handleEmail}
+            />
           </label>
+          {/* <label> 
+            Phone Number (Optional):
+            <input type="text"
+            placeholder="(XXX)-XXX-XXXX"
+            value={phone}
+            onChange={handlePhone}
+            />
+          </label> */}
           <label>
             Username:
             <input type="text" placeholder="Enter a username" />
           </label>
           <label>
             Password:
-            <input type="password" placeholder="Enter a password" />
+            <input type="password" 
+            placeholder="Enter a password" 
+            value={password}
+            onChange={handlePass}
+            />
           </label>
           <button type="button" onClick={handleSignUp}>
             Sign up

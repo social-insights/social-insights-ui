@@ -10,17 +10,27 @@ import {
 } from "reactstrap";
 import { acceptInvite } from "../../supabase/api/accounts/accountCalls";
 import { useAuth } from "../../util/auth/AuthProvider";
+import { useNavigate } from "react-router-dom";
+
 
 export default function JoinOrg() {
   const auth = useAuth();
+  const navigate = useNavigate();
+
+
   const [inputError, setInputError] = useState("");
   const [inputSuccess, setInputSuccess] = useState("");
   const [invitationId, setInvitationId] = useState("");
+  
+  const handleClick = () => {
+    navigate("/organization/select", { replace: true });
+  
+  };
 
   function join(e: SyntheticEvent) {
     e.preventDefault();
     acceptInvite(invitationId.toString(), auth.user).then((res) => {
-      console.log(res);
+      console.log("res", res);
       if (res) {
         switch (res.code) {
           case "22P02":
@@ -77,7 +87,7 @@ export default function JoinOrg() {
                 <FormFeedback valid>{inputSuccess}</FormFeedback>
               )}
             </FormGroup>
-            <Button type="submit">Join</Button>
+            <Button type="submit" onClick={handleClick}>Join</Button>
           </Row>
         </Col>
         <Col lg={3} xs={1} md={2} />

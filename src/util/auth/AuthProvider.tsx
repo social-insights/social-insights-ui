@@ -16,12 +16,15 @@ const AuthImpl = {
   //   fakeAuthProvider.isAuthenticated = true;
   //   setTimeout(callback, 100);
   // },
-  async signIn() {
+  
+  async signIn(userEmail: string, userPassword: string ) {
+    
     const { data, error } = await supabase.auth.signInWithPassword({
-      email: "djlynn03@gmail.com",
-      password: "password",
-    });
+      email: userEmail,
+      password: userPassword,
+    }); console.log("hello");
     if (error) {
+      console.log(error);
       return;
     }
     AuthImpl.isAuthenticated = true;
@@ -34,6 +37,18 @@ const AuthImpl = {
     }
     AuthImpl.isAuthenticated = false;
   },
+  async signUp(userEmail: string, userPassword: string ) {
+    const { data, error } = await supabase.auth.signUp({
+      email: userEmail,
+      password: userPassword,
+    }); console.log("hello");
+    if (error) {
+      console.log(error);
+      return;
+    }
+    AuthImpl.isAuthenticated = true;
+    return data;
+  }
 };
 
 interface Org {
@@ -48,7 +63,8 @@ interface AuthContextType {
   auth: any;
   user: any;
   org: Org | undefined;
-  signIn: (callback: VoidFunction) => void;
+  signIn: (userEmail: string, userPassword: string, callback: VoidFunction) => void;
+  signUp: (userEmail: string, userPassword: string, callback: VoidFunction) => void;
   signOut: (callback: VoidFunction) => void;
   setOrg: any;
 }
@@ -90,12 +106,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return subscription.unsubscribe();
   }, []);
 
-  let signIn = (callback: VoidFunction) => {
-    return AuthImpl.signIn().then((data) => {
+  let signIn = (userEmail: string, userPassword: string, callback: VoidFunction) => {
+    return AuthImpl.signIn(userEmail, userPassword).then((data) => {
       if (data === undefined) {
         return;
       }
       setUser(data.user);
+      console.log(data.user);
+      callback();
+    });
+  };
+  let signUp = (userEmail: string, userPassword: string, callback: VoidFunction) => {
+    return AuthImpl.signUp(userEmail, userPassword).then((data) => {
+      if (data === undefined) {
+        return;
+      }
+      // setUser(data.user);
       callback();
     });
   };
@@ -105,6 +131,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       callback();
     });
   };
+
 
   const passwordReset = () => {}; // TODO
   const updatePassword = () => {}; // TODO
@@ -121,6 +148,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     org,
     signIn,
     signOut,
+    signUp, //
     passwordReset,
     updatePassword,
     setOrg,
